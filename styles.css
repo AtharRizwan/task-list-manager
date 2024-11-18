@@ -1,0 +1,258 @@
+:root {
+    --list_odd: #f9f9f9;
+    --task_done: lightgreen;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Roboto', sans-serif;
+    background-color: #f4f4f4;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+main {
+    flex: 1;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+header {
+    display: flex;
+    flex-direction: row;
+    background-color: #aaa;
+    color: #333;
+    padding: 10px 20px;
+    text-align: center;
+    font-weight: 600;
+    font-size: larger;
+    justify-content: space-between;
+    align-items: center;
+}
+
+header button {
+    background-color: #333;
+}
+
+header button:hover {
+    background-color: #555;
+}
+
+header button:active {
+    transform: scale(0.95);
+}
+
+.container {
+    margin-top: 30px;
+    border-radius: 5px;
+    padding: 20px;
+    background-color: #fff;
+    box-shadow: 0 0 30px rgba(0, 0, 0, 0.4);
+    text-align: center;
+    max-width: 50%;
+    min-height: 300px;
+}
+
+.container h2 {
+    margin: 10px;
+}
+
+button {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    background-color: #555;
+    color: #fff;
+    cursor: pointer;
+    font-size: 1em;
+    margin: 10px;
+    font-weight: 600;
+}
+
+button:hover {
+    background-color: #333;
+}
+
+button:disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
+}
+
+button:active {
+    transform: scale(0.95);
+}
+
+input {
+    padding: 10px;
+    border: 1px solid #aaa;
+    border-radius: 5px;
+    margin: 10px;
+}
+
+#task-list {
+    list-style-type: none;
+    padding: 0;
+    overflow-y: auto;
+    max-height: 300px;
+}
+
+li {
+    position: relative;
+    overflow: hidden; /* Hide overflow during the animation */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    border-bottom: 1px solid #ddd;
+    opacity: 1;
+    transform: translateX(0);
+    transition: transform 0.5s ease, opacity 0.5s ease;
+}
+
+li span {
+    padding: 10px;
+    border-radius: 5px;
+    flex-grow: 1;
+    word-break: break-word;
+}
+
+li img {
+    margin-left: 10px;
+    cursor: pointer;
+}
+
+li img:hover {
+    transform: scale(1.1);
+    opacity: 0.5;
+}
+
+li img:active {
+    transform: scale(0.9);
+    opacity: 1;
+}
+
+li:last-child {
+    border-bottom: none;
+}
+
+li:nth-child(even) {
+    background-color: var(--list_odd);
+}
+
+/* Add a pseudo-element for the sliding background */
+li::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    background-color: var(--task_done);
+    transition: left 0.5s ease-out;
+}
+
+/* Define the transition for the line-through effect */
+li.done {
+    text-decoration: line-through;
+}
+
+/* Animation for when the task is marked as done */
+li.done::before {
+    left: 0;
+}
+
+footer {
+    background-color: #aaa;
+    color: #333;
+    padding: 10px 0;
+    text-align: center;
+}
+
+/* Rainbow animation */
+@keyframes rainbow {
+	from, to { box-shadow: 0 0 30px 0 red }
+	16% { box-shadow: 0 0 30px 0  yellow }
+	32% { box-shadow: 0 0 30px 0  green }
+	48% { box-shadow: 0 0 30px 0  aqua }
+	64% { box-shadow: 0 0 30px 0  blue }
+	80% { box-shadow: 0 0 30px 0  fuchsia }
+}
+
+/* Slide-in animation from the left */
+@keyframes slideIn {
+    0% {
+        background-color: transparent;
+        transform: translateX(-100%); /* Start off-screen to the left */
+    }
+    100% {
+        background-color: var(--task_done); /* Green background */
+        transform: translateX(0); /* Slide to the normal position */
+    }
+}
+
+/* Responsiveness */
+@media screen and (max-width: 1080px) {
+    main {
+        flex-direction: column;
+    }
+    
+    .container {
+        max-width: 90%;
+    }
+    
+}
+
+/* CSS for Catch the Circle minigame */
+.game-container {
+    margin: 20px;
+    text-align: center;
+}
+
+#game {
+    overflow: hidden;
+    height: 0;
+    transition: height 0.5s ease, opacity 0.5s ease;
+    opacity: 0;
+}
+
+#game.visible {
+    height: 100%;
+    opacity: 1;
+}
+
+.game-container p {
+    margin: 10px;
+}
+
+.game-area {
+    position: relative;
+    width: 300px;
+    height: 300px;
+    margin: 20px auto;
+    border: 2px solid #333;
+    background-color: #f9f9f9;
+}
+
+.circle {
+    position: absolute;
+    width: 30px;
+    height: 30px;
+    background-color: red;
+    border-radius: 50%;
+    display: none;
+    cursor: pointer;
+}
+
+.score {
+    font-size: 18px;
+    margin: 10px 0;
+}

@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Task List Manager</title>
+    <link rel="stylesheet" href="styles.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+
+<body>
+    <header>
+        <h2>Task List Manager</h2>
+        <button id="darkModeBtn" onclick="toggleMode()">Dark Mode</button>
+    </header>
+
+    <!-- Task List Section -->
+    <main>
+        <div class="container">
+            <h2>Add Task</h2>
+            <form onsubmit="addTask(event)" method="post">
+                <input type="text" id="task" name="task" required>
+                <button type="submit">Add Task</button>
+            </form>
+            <h2>Current Tasks</h2>
+            <ul id="task-list">
+            </ul>
+        </div>
+        
+        <!-- Mini-Game Section -->
+        <div class="game-container">
+            <h2>Mini-Game: Catch the Circle</h2>
+            <p>Click the circle as many times as you can in 30 seconds!</p>
+            <button onclick="startGame()">Start Game</button>
+            <div id="game">
+                <div>Time: <span id="timer">30</span> seconds</div>
+                <div class="score">Score: <span id="score">0</span></div>
+                <div class="game-area" id="game-area">
+                    <div class="circle" id="circle"></div>
+                </div>
+            </div>
+        </div>
+    </main>
+    <footer>
+        &copy; 2024 Task List Manager
+    </footer>
+    <script src="script.js"></script>
+</body>
+
+</html>
